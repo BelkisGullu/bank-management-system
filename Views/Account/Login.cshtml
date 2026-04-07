@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="container">
+    <div class="form-box">
+        <h1 class="text-center mb-4">🏦 Banka Yönetici Girişi</h1>
+        
+        <form id="loginForm" method="post" asp-action="Login">
+            @Html.AntiForgeryToken()
+            
+            <div class="mb-3">
+                <label class="form-label">Kullanıcı Adı:</label>
+                <input type="text" class="form-control" name="username" id="username" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Şifre:</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+
+            <div class="captcha-box">
+                <label class="form-label">Güvenlik Sorusu:</label>
+                <p class="fs-5 fw-bold">
+                    <span id="num1">@ViewBag.CaptchaNum1</span> + 
+                    <span id="num2">@ViewBag.CaptchaNum2</span> = ?
+                </p>
+                <input type="number" class="form-control" name="captchaAnswer" id="captchaAnswer" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Giriş Yap</button>
+            
+            <p class="text-center">
+                Hesabınız yok mu? <a href="@Url.Action("Register", "Account")" class="text-decoration-none">Kayıt Ol</a>
+            </p>
+        </form>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="message error mt-3 alert alert-danger">@ViewBag.ErrorMessage</div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Login form submit animasyonu
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            if (this.checkValidity()) {
+                // Loading overlay göster
+                showLoadingOverlay('Giriş yapılıyor, lütfen bekleyin...');
+            }
+        });
+    </script>
+}
+
+
+

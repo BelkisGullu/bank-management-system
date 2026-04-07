@@ -1,0 +1,216 @@
+@model BankManagementSystem.Models.Customer
+@{
+    ViewData["Title"] = "Yeni Müşteri Ekle";
+}
+
+<h2>Yeni Müşteri Ekle</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="TC" class="form-label"></label>
+                    <input asp-for="TC" class="form-control" maxlength="11" />
+                    <span asp-validation-for="TC" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Phone" class="form-label"></label>
+                    <input asp-for="Phone" class="form-control" maxlength="10" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="BranchId" class="form-label"></label>
+                    <select asp-for="BranchId" class="form-select" asp-items="ViewBag.BranchId" id="BranchId">
+                        <option value="">Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="BranchId" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="RepresentativeId" class="form-label"></label>
+                    <select asp-for="RepresentativeId" class="form-select" id="RepresentativeId">
+                        <option value="">Önce şube seçiniz</option>
+                    </select>
+                    <span asp-validation-for="RepresentativeId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="AccountNumber" class="form-label"></label>
+                    <div class="input-group">
+                        <input asp-for="AccountNumber" class="form-control" maxlength="12" id="AccountNumber" />
+                        <button type="button" class="btn btn-secondary" onclick="generateAccountNumber()">🎲 Oluştur</button>
+                    </div>
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Balance" class="form-label"></label>
+                    <input asp-for="Balance" class="form-control" type="text" inputmode="decimal" />
+                    <span asp-validation-for="Balance" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CreditCard" class="form-label"></label>
+                    <div class="input-group">
+                        <input asp-for="CreditCard" class="form-control" maxlength="16" id="CreditCard" />
+                        <button type="button" class="btn btn-secondary" onclick="generateCreditCard()">🎲 Oluştur</button>
+                    </div>
+                    <span asp-validation-for="CreditCard" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CreditLimit" class="form-label"></label>
+                    <input asp-for="CreditLimit" class="form-control" type="text" inputmode="decimal" />
+                    <span asp-validation-for="CreditLimit" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="UsedCredit" class="form-label"></label>
+                    <input asp-for="UsedCredit" class="form-control" type="text" inputmode="decimal" />
+                    <span asp-validation-for="UsedCredit" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+
+            // Tüm temsilcileri JavaScript'e aktar (AJAX yok, direkt filtreleme)
+            var allRepresentatives = @Html.Raw(Json.Serialize(ViewData["AllRepresentatives"]));
+            var representativesByBranch = {};
+            
+            // Temsilcileri şubelerine göre grupla
+            if (allRepresentatives) {
+                allRepresentatives.forEach(function(rep) {
+                    if (!representativesByBranch[rep.branchId]) {
+                        representativesByBranch[rep.branchId] = [];
+                    }
+                    representativesByBranch[rep.branchId].push(rep);
+                });
+            }
+
+            // Şube değiştiğinde temsilcileri filtrele (AJAX yok)
+            $('#BranchId').on('change', function() {
+                var branchId = $(this).val();
+                var select = $('#RepresentativeId');
+                
+                if (!branchId) {
+                    select.html('<option value="">Önce şube seçiniz</option>');
+                    return;
+                }
+
+                // Direkt filtreleme - AJAX yok
+                var reps = representativesByBranch[branchId] || [];
+                select.html('<option value="">Seçiniz</option>');
+                
+                if (reps.length > 0) {
+                    reps.forEach(function(emp) {
+                        select.append($('<option></option>').val(emp.id).text(emp.name));
+                    });
+                } else {
+                    select.html('<option value="">Bu şubede müşteri temsilcisi bulunmuyor</option>');
+                }
+            });
+
+            function generateAccountNumber() {
+                var number = '';
+                for (var i = 0; i < 12; i++) {
+                    number += Math.floor(Math.random() * 10);
+                }
+                $('#AccountNumber').val(number);
+            }
+
+            function generateCreditCard() {
+                var number = '';
+                for (var i = 0; i < 16; i++) {
+                    number += Math.floor(Math.random() * 10);
+                }
+                $('#CreditCard').val(number);
+            }
+
+            // Global fonksiyonlar
+            window.generateAccountNumber = generateAccountNumber;
+            window.generateCreditCard = generateCreditCard;
+
+            // TC ve Telefon için sadece rakam girişi
+            $('#TC').on('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);
+            });
+            
+            $('#Phone').on('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+            });
+
+            // Balance, CreditLimit, UsedCredit alanları için virgül/nokta dönüşümü
+            ['Balance', 'CreditLimit', 'UsedCredit'].forEach(function(fieldId) {
+                var field = $('#' + fieldId);
+                if (field.length) {
+                    field.on('blur', function() {
+                        var value = $(this).val().replace(',', '.').trim();
+                        if (value !== '' && !isNaN(value)) {
+                            var numValue = parseFloat(value);
+                            if (!isNaN(numValue)) {
+                                $(this).val(numValue.toFixed(2));
+                            }
+                        }
+                    });
+                    
+                    field.on('input', function() {
+                        this.value = this.value.replace(/[^0-9.,]/g, '');
+                    });
+                }
+            });
+
+            // Form submit edilmeden önce tüm sayısal alanları düzelt
+            $('form').on('submit', function(e) {
+                ['Balance', 'CreditLimit', 'UsedCredit'].forEach(function(fieldId) {
+                    var field = $('#' + fieldId);
+                    if (field.length && field.val()) {
+                        var value = field.val().replace(',', '.').trim();
+                        if (value !== '' && !isNaN(value)) {
+                            var numValue = parseFloat(value);
+                            if (!isNaN(numValue)) {
+                                field.val(numValue.toFixed(2));
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+

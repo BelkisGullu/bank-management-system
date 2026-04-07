@@ -1,0 +1,291 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Belk\u0131s\\AppData\\Local\\Temp\\01d60b4b-5037-4633-afe8-2d5ebd4872ec_21010109_BELKIS_G\u00DCLL\u00DC.zip.2ec\\21010109_BELKIS_G\u00DCLL\u00DC\\BankManagementSystem\\Data\\ApplicationDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\views\\customer\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:views\\customer\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\pages\\customers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:pages\\customers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\views\\customerdashboard\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:views\\customerdashboard\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\views\\customer\\givecredit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:views\\customer\\givecredit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\views\\employee\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:views\\employee\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\models\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:models\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\views\\employee\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:views\\employee\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\migrations\\20251231150258_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:migrations\\20251231150258_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|c:\\users\\belk\u0131s\\desktop\\bankmanagementsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78C4B37A-2523-40A7-8986-959BA7B36500}|BankManagementSystem.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T11:28:24.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\AppData\\Local\\Temp\\01d60b4b-5037-4633-afe8-2d5ebd4872ec_21010109_BELKIS_G\u00DCLL\u00DC.zip.2ec\\21010109_BELKIS_G\u00DCLL\u00DC\\BankManagementSystem\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "..\\..\\AppData\\Local\\Temp\\01d60b4b-5037-4633-afe8-2d5ebd4872ec_21010109_BELKIS_G\u00DCLL\u00DC.zip.2ec\\21010109_BELKIS_G\u00DCLL\u00DC\\BankManagementSystem\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\AppData\\Local\\Temp\\01d60b4b-5037-4633-afe8-2d5ebd4872ec_21010109_BELKIS_G\u00DCLL\u00DC.zip.2ec\\21010109_BELKIS_G\u00DCLL\u00DC\\BankManagementSystem\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "..\\..\\AppData\\Local\\Temp\\01d60b4b-5037-4633-afe8-2d5ebd4872ec_21010109_BELKIS_G\u00DCLL\u00DC.zip.2ec\\21010109_BELKIS_G\u00DCLL\u00DC\\BankManagementSystem\\Data\\ApplicationDbContext.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-07T11:27:47.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Data\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "Data\\DbInitializer.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Data\\DbInitializer.cs",
+              "RelativeToolTip": "Data\\DbInitializer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-07T11:27:47.821Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Pages\\Customers\\Details.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Customers\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Pages\\Customers\\Details.cshtml",
+              "RelativeToolTip": "Pages\\Customers\\Details.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T11:27:47.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Customer\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Customer\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Customer\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Customer\\Edit.cshtml",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAAIIAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T11:27:47.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Employee\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Employee\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Employee\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Employee\\Edit.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAB0AAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T11:27:47.838Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\CustomerDashboard\\Profile.cshtml",
+              "RelativeDocumentMoniker": "Views\\CustomerDashboard\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\CustomerDashboard\\Profile.cshtml",
+              "RelativeToolTip": "Views\\CustomerDashboard\\Profile.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T11:27:47.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAALYAAAAAAAAAAAAUwFkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAkwG0AAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.857Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GiveCredit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Customer\\GiveCredit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Customer\\GiveCredit.cshtml",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Customer\\GiveCredit.cshtml",
+              "RelativeToolTip": "Views\\Customer\\GiveCredit.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADcAAABtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T11:27:47.862Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Branch.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Models\\Branch.cs",
+              "RelativeDocumentMoniker": "Models\\Branch.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Models\\Branch.cs",
+              "RelativeToolTip": "Models\\Branch.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Employee\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Employee\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Views\\Employee\\Create.cshtml",
+              "RelativeToolTip": "Views\\Employee\\Create.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAIBJwCIAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-07T11:27:47.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "20251231150258_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Migrations\\20251231150258_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251231150258_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Migrations\\20251231150258_InitialCreate.cs",
+              "RelativeToolTip": "Migrations\\20251231150258_InitialCreate.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAQwEQAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Belk\u0131s\\Desktop\\BankManagementSystem\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T11:27:47.885Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

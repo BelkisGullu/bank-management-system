@@ -1,0 +1,99 @@
+@{
+    ViewData["Title"] = "Müşteri Kayıt";
+}
+
+<div class="container">
+    <div class="form-box">
+        <h1 class="text-center mb-4">👤 Müşteri Kayıt</h1>
+        
+        <form id="customerRegisterForm" method="post" asp-action="CustomerRegister">
+            @Html.AntiForgeryToken()
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Ad Soyad:</label>
+                    <input type="text" class="form-control" name="name" id="name" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">TC Kimlik No:</label>
+                    <input type="text" class="form-control" name="tc" id="tc" maxlength="11" pattern="[0-9]{11}" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Telefon:</label>
+                    <input type="text" class="form-control" name="phone" id="phone" maxlength="10" pattern="[0-9]{10}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Email:</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Şifre:</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+                <small class="text-muted">En az 8 karakter</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Şifre Tekrar:</label>
+                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" required>
+            </div>
+
+            <div class="captcha-box">
+                <label class="form-label">Güvenlik Sorusu:</label>
+                <p class="fs-5 fw-bold">
+                    <span id="regNum1">@ViewBag.RegCaptchaNum1</span> + 
+                    <span id="regNum2">@ViewBag.RegCaptchaNum2</span> = ?
+                </p>
+                <input type="number" class="form-control" name="regCaptchaAnswer" id="regCaptchaAnswer" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Kayıt Ol</button>
+            
+            <p class="text-center">
+                Zaten hesabınız var mı? <a href="@Url.Action("CustomerLogin", "Account")" class="text-decoration-none">Giriş Yap</a>
+            </p>
+            <p class="text-center mt-2">
+                <small>
+                    <a href="@Url.Action("Register", "Account")" class="text-decoration-none">Yönetici Kayıt</a>
+                </small>
+            </p>
+        </form>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="message error mt-3 alert alert-danger">@ViewBag.ErrorMessage</div>
+        }
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="message success mt-3 alert alert-success">@ViewBag.SuccessMessage</div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // TC ve Telefon için sadece rakam girişi
+        document.getElementById('tc').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);
+        });
+        document.getElementById('phone').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+        });
+
+        // Şifre eşleşme kontrolü
+        document.getElementById('passwordConfirm').addEventListener('input', function() {
+            var password = document.getElementById('password').value;
+            var passwordConfirm = this.value;
+            if (password !== passwordConfirm && passwordConfirm.length > 0) {
+                this.setCustomValidity('Şifreler eşleşmiyor');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    </script>
+}
+

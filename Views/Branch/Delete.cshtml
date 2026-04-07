@@ -1,0 +1,37 @@
+@model BankManagementSystem.Models.Branch
+@{
+    ViewData["Title"] = "Şube Sil";
+}
+
+<h2>Şube Sil</h2>
+<h3>Bu şubeyi silmek istediğinizden emin misiniz?</h3>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">Şube Adı</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+
+    <dt class="col-sm-2">Adres</dt>
+    <dd class="col-sm-10">@Model.Address</dd>
+
+    <dt class="col-sm-2">Telefon</dt>
+    <dd class="col-sm-10">@Model.Phone</dd>
+</dl>
+
+@if ((Model.Customers != null && Model.Customers.Any()) || (Model.Employees != null && Model.Employees.Any()))
+{
+    <div class="alert alert-warning">
+        Bu şubeye bağlı 
+        @((Model.Customers?.Count() ?? 0) + (Model.Employees?.Count() ?? 0)) 
+        kayıt bulunmaktadır. Kayıtlar silinmeden şube silinemez.
+    </div>
+}
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+
+
+

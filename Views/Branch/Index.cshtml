@@ -1,0 +1,38 @@
+@model IEnumerable<BankManagementSystem.Models.Branch>
+@{
+    ViewData["Title"] = "Şubeler";
+}
+
+<h2 class="mb-4"><i class="fas fa-building me-2"></i>Şube Bilgileri</h2>
+
+<a asp-action="Create" class="btn btn-success mb-3"><i class="fas fa-plus me-2"></i>Yeni Şube Ekle</a>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<div class="row">
+    @foreach (var branch in Model)
+    {
+        <div class="col-md-6 mb-3">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><i class="fas fa-building me-2"></i>@branch.Name</h5>
+                    <p class="card-text"><i class="fas fa-map-marker-alt me-2"></i>Adres: @branch.Address<br><i class="fas fa-phone me-2"></i>Telefon: @branch.Phone</p>
+                    <p class="card-text">
+                        <strong><i class="fas fa-users me-2"></i>Müşteri Sayısı:</strong> @(branch.Customers?.Count() ?? 0)<br>
+                        <strong><i class="fas fa-user-tie me-2"></i>Çalışan Sayısı:</strong> @(branch.Employees?.Count() ?? 0)
+                    </p>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@branch.Id" class="btn btn-warning btn-sm"><i class="fas fa-edit me-1"></i>Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@branch.Id" class="btn btn-danger btn-sm"><i class="fas fa-trash me-1"></i>Sil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

@@ -1,0 +1,70 @@
+@page
+@model BankManagementSystem.Pages.Customers.DetailsModel
+@{
+    ViewData["Title"] = "Müşteri Detayları";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4"><i class="fas fa-user me-2"></i>Müşteri Detayları</h2>
+            
+            @if (Model.Customer == null)
+            {
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Müşteri bulunamadı.
+                </div>
+                <a asp-page="./Index" class="btn btn-secondary">Geri Dön</a>
+            }
+            else
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">Müşteri No</dt>
+                            <dd class="col-sm-9">@Model.Customer.Id</dd>
+
+                            <dt class="col-sm-3">Ad Soyad</dt>
+                            <dd class="col-sm-9">@Model.Customer.Name</dd>
+
+                            <dt class="col-sm-3">TC Kimlik No</dt>
+                            <dd class="col-sm-9">@Model.Customer.TC</dd>
+
+                            <dt class="col-sm-3">Telefon</dt>
+                            <dd class="col-sm-9">@Model.Customer.Phone</dd>
+
+                            <dt class="col-sm-3">Email</dt>
+                            <dd class="col-sm-9">@Model.Customer.Email</dd>
+
+                            <dt class="col-sm-3">Şube</dt>
+                            <dd class="col-sm-9">@(Model.Customer.Branch?.Name ?? "N/A")</dd>
+
+                            <dt class="col-sm-3">Müşteri Temsilcisi</dt>
+                            <dd class="col-sm-9">@(Model.Customer.Representative?.Name ?? "N/A")</dd>
+
+                            <dt class="col-sm-3">Hesap Numarası</dt>
+                            <dd class="col-sm-9">@Model.Customer.AccountNumber</dd>
+
+                            <dt class="col-sm-3">Hesap Bakiyesi</dt>
+                            <dd class="col-sm-9"><strong class="text-success">@Model.Customer.Balance.ToString("N2") ₺</strong></dd>
+
+                            @if (Model.Customer.CreditLimit.HasValue)
+                            {
+                                <dt class="col-sm-3">Kredi Limiti</dt>
+                                <dd class="col-sm-9">@Model.Customer.CreditLimit.Value.ToString("N2") ₺</dd>
+                            }
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="./Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>Geri Dön
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

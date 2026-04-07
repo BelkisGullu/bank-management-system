@@ -1,0 +1,98 @@
+@model BankManagementSystem.Models.Customer
+@{
+    ViewData["Title"] = "Profil Düzenle";
+}
+
+<h2 class="mb-4 fade-in">👤 Profil Düzenle</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="UpdateProfile" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Ad Soyad:</label>
+                        <input type="text" class="form-control" name="name" value="@Model.Name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">TC Kimlik No:</label>
+                        <input type="text" class="form-control" value="@Model.TC" disabled>
+                        <small class="text-muted">TC Kimlik No değiştirilemez</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Telefon:</label>
+                        <input type="text" class="form-control" name="phone" value="@Model.Phone" maxlength="10" pattern="[0-9]{10}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email:</label>
+                        <input type="email" class="form-control" name="email" value="@Model.Email" required>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h5>Şifre Değiştir (Opsiyonel)</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Yeni Şifre:</label>
+                        <input type="password" class="form-control" name="password" minlength="8">
+                        <small class="text-muted">En az 8 karakter. Değiştirmek istemiyorsanız boş bırakın.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Şifre Tekrar:</label>
+                        <input type="password" class="form-control" name="passwordConfirm" minlength="8">
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+                        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">ℹ️ Bilgi</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Hesap Numarası:</strong><br>@Model.AccountNumber</p>
+                <p><strong>Şube:</strong><br>@(Model.Branch?.Name ?? "N/A")</p>
+                <p><strong>Müşteri Temsilcisi:</strong><br>@(Model.Representative?.Name ?? "N/A")</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Telefon için sadece rakam girişi
+        document.querySelector('input[name="phone"]').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+        });
+    </script>
+}
+

@@ -1,0 +1,38 @@
+@model BankManagementSystem.Models.Employee
+@{
+    ViewData["Title"] = "Çalışan Sil";
+}
+
+<h2>Çalışan Sil</h2>
+<h3>Bu çalışanı silmek istediğinizden emin misiniz?</h3>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">Çalışan No</dt>
+    <dd class="col-sm-10">@Model.Id</dd>
+
+    <dt class="col-sm-2">Ad Soyad</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+
+    <dt class="col-sm-2">Pozisyon</dt>
+    <dd class="col-sm-10">@Model.Position</dd>
+
+    <dt class="col-sm-2">Şube</dt>
+    <dd class="col-sm-10">@(Model.Branch?.Name ?? "N/A")</dd>
+</dl>
+
+@if (Model.Customers != null && Model.Customers.Any())
+{
+    <div class="alert alert-warning">
+        Bu çalışana bağlı @Model.Customers.Count() müşteri bulunmaktadır. Müşteriler silinmeden çalışan silinemez.
+    </div>
+}
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+
+
+

@@ -1,0 +1,200 @@
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="dashboard">
+    <div class="content">
+        <div class="sidebar bg-light p-3">
+            <h2 class="h4 mb-5"><i class="fas fa-bars me-2"></i>Menü</h2>
+            <div class="d-grid gap-3">
+                <a asp-controller="Customer" asp-action="Index" class="btn btn-outline-primary">
+                    <i class="fas fa-users me-2"></i>Müşteriler
+                </a>
+                <a asp-controller="Employee" asp-action="Index" class="btn btn-outline-primary">
+                    <i class="fas fa-user-tie me-2"></i>Çalışanlar
+                </a>
+                <a asp-controller="Branch" asp-action="Index" class="btn btn-outline-primary">
+                    <i class="fas fa-building me-2"></i>Şubeler
+                </a>
+                <a asp-controller="Contact" asp-action="Messages" class="btn btn-outline-primary">
+                    <i class="fas fa-envelope me-2"></i>Mesajlar
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h2 class="mb-4 fade-in"><i class="fas fa-chart-line me-2"></i>Dashboard</h2>
+            
+            <!-- İstatistik Kartları -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card primary">
+                        <div class="text-center">
+                            <div class="stat-icon text-primary">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Toplam Müşteri</h5>
+                            <h2 class="stat-number counter" id="totalCustomers">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card success">
+                        <div class="text-center">
+                            <div class="stat-icon text-success">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Toplam Çalışan</h5>
+                            <h2 class="stat-number counter" id="totalEmployees">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card warning">
+                        <div class="text-center">
+                            <div class="stat-icon text-warning">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Toplam Şube</h5>
+                            <h2 class="stat-number counter" id="totalBranches">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card info">
+                        <div class="text-center">
+                            <div class="stat-icon text-info">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Okunmamış Mesaj</h5>
+                            <h2 class="stat-number counter" id="unreadMessages">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grafikler -->
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3">
+                    <div class="chart-container">
+                        <h5 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Şubelere Göre Müşteri Dağılımı</h5>
+                        <canvas id="customerChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="chart-container">
+                        <h5 class="mb-3"><i class="fas fa-chart-bar me-2"></i>Şubelere Göre Çalışan Dağılımı</h5>
+                        <canvas id="employeeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            
+
+@section Scripts {
+    <script>
+        let customerChart, employeeChart;
+
+        // Sayfa yüklendiğinde istatistikleri yükle ve grafikleri oluştur
+        $(document).ready(function() {
+            loadStatistics();
+            loadCharts();
+            // loadCustomers() - Sayfa yüklendiğinde çağrılmamalı, sadece filtreleme yapılırken
+        });
+
+        // İstatistikleri yükle ve animasyonlu göster
+        function loadStatistics() {
+            $.get('@Url.Action("Statistics", "Dashboard")', function(data) {
+                animateCounter(document.getElementById('totalCustomers'), data.customers, 2000);
+                animateCounter(document.getElementById('totalEmployees'), data.employees, 2000);
+                animateCounter(document.getElementById('totalBranches'), data.branches, 2000);
+                animateCounter(document.getElementById('unreadMessages'), data.unreadMessages, 2000);
+            });
+        }
+
+        // Grafikleri yükle
+        function loadCharts() {
+            $.get('@Url.Action("BranchStats", "Dashboard")', function(data) {
+                // Müşteri Dağılımı Grafiği (Pie Chart)
+                const customerCtx = document.getElementById('customerChart').getContext('2d');
+                if (customerChart) {
+                    customerChart.destroy();
+                }
+                customerChart = new Chart(customerCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.map(b => b.name),
+                        datasets: [{
+                            label: 'Müşteri Sayısı',
+                            data: data.map(b => b.customers),
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(16, 185, 129, 0.8)',
+                                'rgba(245, 158, 11, 0.8)',
+                                'rgba(239, 68, 68, 0.8)',
+                                'rgba(139, 92, 246, 0.8)',
+                                'rgba(236, 72, 153, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(16, 185, 129, 1)',
+                                'rgba(245, 158, 11, 1)',
+                                'rgba(239, 68, 68, 1)',
+                                'rgba(139, 92, 246, 1)',
+                                'rgba(236, 72, 153, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+
+                // Çalışan Dağılımı Grafiği (Bar Chart)
+                const employeeCtx = document.getElementById('employeeChart').getContext('2d');
+                if (employeeChart) {
+                    employeeChart.destroy();
+                }
+                employeeChart = new Chart(employeeCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(b => b.name),
+                        datasets: [{
+                            label: 'Çalışan Sayısı',
+                            data: data.map(b => b.employees),
+                            backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                            borderColor: 'rgba(16, 185, 129, 1)',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
+    </script>
+}

@@ -1,0 +1,92 @@
+@model BankManagementSystem.Models.Customer
+@{
+    ViewData["Title"] = "Müşteri Paneli";
+}
+
+<div class="container">
+    <h2 class="mb-4 fade-in"><i class="fas fa-user-circle me-2"></i>Hoş Geldiniz, @Model.Name</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <script>
+        setTimeout(() => {
+            showToast('@TempData["SuccessMessage"]', 'success');
+        }, 100);
+    </script>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <script>
+        setTimeout(() => {
+            showToast('@TempData["ErrorMessage"]', 'danger');
+        }, 100);
+    </script>
+}
+
+    <div class="row">
+        <!-- Hesap Bilgileri -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-wallet me-2"></i>Hesap Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Hesap Numarası:</strong> @Model.AccountNumber</p>
+                    <p><strong>Bakiye:</strong> <span class="text-success fw-bold">@Model.Balance.ToString("N2") ₺</span></p>
+                    @if (Model.CreditCard != null)
+                    {
+                        <p><strong>Kredi Kartı:</strong> @Model.CreditCard</p>
+                    }
+                    @if (Model.CreditLimit.HasValue)
+                    {
+                        <p><strong>Kredi Limiti:</strong> @Model.CreditLimit.Value.ToString("N2") ₺</p>
+                        <p><strong>Kullanılan Kredi:</strong> @(Model.UsedCredit?.ToString("N2") ?? "0.00") ₺</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Kişisel Bilgiler -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-id-card me-2"></i>Kişisel Bilgiler</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Ad Soyad:</strong> @Model.Name</p>
+                    <p><strong>TC Kimlik No:</strong> @Model.TC</p>
+                    <p><strong>Telefon:</strong> @Model.Phone</p>
+                    <p><strong>Email:</strong> @Model.Email</p>
+                    <p><strong>Şube:</strong> @(Model.Branch?.Name ?? "N/A")</p>
+                    <p><strong>Müşteri Temsilcisi:</strong> @(Model.Representative?.Name ?? "N/A")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Hızlı İşlemler</h5>
+                </div>
+                <div class="card-body">
+                    <a asp-action="Deposit" class="btn btn-success me-2 mb-2"><i class="fas fa-arrow-down me-2"></i>Para Yatır</a>
+                    <a asp-action="Withdraw" class="btn btn-warning me-2 mb-2"><i class="fas fa-arrow-up me-2"></i>Para Çek</a>
+                    <a asp-action="Profile" class="btn btn-primary me-2 mb-2"><i class="fas fa-user-edit me-2"></i>Profilimi Düzenle</a>
+                    <a asp-controller="Contact" asp-action="Index" class="btn btn-info me-2 mb-2"><i class="fas fa-envelope me-2"></i>İletişime Geç</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

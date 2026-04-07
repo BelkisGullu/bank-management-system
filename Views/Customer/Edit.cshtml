@@ -1,0 +1,193 @@
+@model BankManagementSystem.Models.Customer
+@{
+    ViewData["Title"] = "Müşteri Düzenle";
+}
+
+<h2>Müşteri Düzenle</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="TC" class="form-label"></label>
+                    <input asp-for="TC" class="form-control" maxlength="11" readonly />
+                    <span asp-validation-for="TC" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Phone" class="form-label"></label>
+                    <input asp-for="Phone" class="form-control" maxlength="10" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="BranchId" class="form-label"></label>
+                    <select asp-for="BranchId" class="form-select" asp-items="ViewBag.BranchId" id="BranchId">
+                        <option value="">Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="BranchId" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="RepresentativeId" class="form-label"></label>
+                    <select asp-for="RepresentativeId" class="form-select" id="RepresentativeId" asp-items="ViewBag.RepresentativeId">
+                    </select>
+                    <span asp-validation-for="RepresentativeId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="AccountNumber" class="form-label"></label>
+                    <input asp-for="AccountNumber" class="form-control" maxlength="12" readonly />
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Balance" class="form-label"></label>
+                    <input asp-for="Balance" class="form-control" type="text" inputmode="decimal" />
+                    <span asp-validation-for="Balance" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CreditCard" class="form-label"></label>
+                    <input asp-for="CreditCard" class="form-control" maxlength="16" readonly />
+                    <span asp-validation-for="CreditCard" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CreditLimit" class="form-label"></label>
+                    <input asp-for="CreditLimit" class="form-control" type="text" inputmode="decimal" />
+                    <span asp-validation-for="CreditLimit" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="UsedCredit" class="form-label"></label>
+                    <input asp-for="UsedCredit" class="form-control" type="text" inputmode="decimal" />
+                    <span asp-validation-for="UsedCredit" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            var currentRepresentativeId = '@Model.RepresentativeId';
+            var lastBranchId = $('#BranchId').val();
+            
+            // Tüm temsilcileri JavaScript'e aktar (AJAX yok, direkt filtreleme)
+            var allRepresentatives = @Html.Raw(Json.Serialize(ViewData["AllRepresentatives"]));
+            var representativesByBranch = {};
+            
+            // Temsilcileri şubelerine göre grupla
+            if (allRepresentatives) {
+                allRepresentatives.forEach(function(rep) {
+                    if (!representativesByBranch[rep.branchId]) {
+                        representativesByBranch[rep.branchId] = [];
+                    }
+                    representativesByBranch[rep.branchId].push(rep);
+                });
+            }
+
+            
+            $('#BranchId').on('change', function() {
+                var branchId = $(this).val();
+                var select = $('#RepresentativeId');
+                var previousValue = select.val();
+                
+                if (!branchId) {
+                    select.html('<option value="">Önce şube seçiniz</option>');
+                    return;
+                }
+
+                
+                var reps = representativesByBranch[branchId] || [];
+                select.html('<option value="">Seçiniz</option>');
+                
+                if (reps.length > 0) {
+                    reps.forEach(function(emp) {
+                        var option = $('<option></option>').val(emp.id).text(emp.name);
+                        if (emp.id == currentRepresentativeId || emp.id == previousValue) {
+                            option.prop('selected', true);
+                        }
+                        select.append(option);
+                    });
+                } else {
+                    select.html('<option value="">Bu şubede müşteri temsilcisi bulunmuyor</option>');
+                }
+            });
+
+            // Telefon için sadece rakam girişi
+            $('#Phone').on('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+            });
+
+            // Balance, CreditLimit, UsedCredit alanları için virgül/nokta dönüşümü
+            ['Balance', 'CreditLimit', 'UsedCredit'].forEach(function(fieldId) {
+                var field = $('#' + fieldId);
+                if (field.length) {
+                    field.on('blur', function() {
+                        var value = $(this).val().replace(',', '.').trim();
+                        if (value !== '' && !isNaN(value)) {
+                            var numValue = parseFloat(value);
+                            if (!isNaN(numValue)) {
+                                $(this).val(numValue.toFixed(2));
+                            }
+                        }
+                    });
+                    
+                    field.on('input', function() {
+                        this.value = this.value.replace(/[^0-9.,]/g, '');
+                    });
+                }
+            });
+
+            // Form submit edilmeden önce tüm sayısal alanları düzelt
+            $('form').on('submit', function(e) {
+                ['Balance', 'CreditLimit', 'UsedCredit'].forEach(function(fieldId) {
+                    var field = $('#' + fieldId);
+                    if (field.length && field.val()) {
+                        var value = field.val().replace(',', '.').trim();
+                        if (value !== '' && !isNaN(value)) {
+                            var numValue = parseFloat(value);
+                            if (!isNaN(numValue)) {
+                                field.val(numValue.toFixed(2));
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+

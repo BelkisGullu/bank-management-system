@@ -1,0 +1,88 @@
+@model BankManagementSystem.Models.Customer
+@{
+    ViewData["Title"] = "Para Çek";
+}
+
+<h2 class="mb-4 fade-in"><i class="fas fa-arrow-up me-2"></i>Para Çek</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h5 class="mb-0"><i class="fas fa-arrow-up me-2"></i>Para Çekme İşlemi</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <strong>Mevcut Bakiyeniz:</strong> <span class="fs-4 text-primary">@Model.Balance.ToString("N2") ₺</span>
+                </div>
+
+                <form asp-action="Withdraw" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Çekilecek Tutar (₺):</label>
+                        <div class="input-group">
+                            <span class="input-group-text">₺</span>
+                            <input type="number" class="form-control" name="amount" step="0.01" min="0.01" max="@Model.Balance" required autofocus>
+                        </div>
+                        <small class="text-muted">Maksimum çekilebilir tutar: @Model.Balance.ToString("N2") ₺</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-warning btn-lg w-100">
+                            <i class="fas fa-arrow-up me-2"></i>Para Çek
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary w-100 mt-2"><i class="fas fa-times me-2"></i>İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Bilgi</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Hesap Numarası:</strong><br>@Model.AccountNumber</p>
+                <p><strong>Ad Soyad:</strong><br>@Model.Name</p>
+                <p><strong>Şube:</strong><br>@(Model.Branch?.Name ?? "N/A")</p>
+                @if (Model.CreditLimit.HasValue)
+                {
+                    <hr>
+                    <p><strong>Kredi Limiti:</strong><br>@Model.CreditLimit.Value.ToString("N2") ₺</p>
+                    <p><strong>Kullanılan Kredi:</strong><br>@(Model.UsedCredit?.ToString("N2") ?? "0.00") ₺</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Maksimum tutar kontrolü
+        document.querySelector('input[name="amount"]').addEventListener('input', function() {
+            var maxAmount = @Model.Balance;
+            var enteredAmount = parseFloat(this.value);
+            
+            if (enteredAmount > maxAmount) {
+                this.setCustomValidity('Çekilecek tutar bakiyenizi aşamaz!');
+            } else if (enteredAmount <= 0) {
+                this.setCustomValidity('Tutar 0\'dan büyük olmalıdır!');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    </script>
+}
+

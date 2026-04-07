@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="container">
+    <div class="form-box">
+        <h5 class="text-center mb-4">🏦 Yönetici Kayıt</h5>
+        
+        <form id="registerForm" method="post" asp-action="Register">
+            @Html.AntiForgeryToken()
+            
+            <div class="mb-3">
+                <label class="form-label">Kullanıcı Adı:</label>
+                <input type="text" class="form-control" name="regUsername" id="regUsername" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Şifre:</label>
+                <input type="password" class="form-control" name="regPassword" id="regPassword" required>
+            </div>
+
+            <div class="password-rules">
+                <p class="fw-bold mb-2">Şifre kuralları:</p>
+                <ul class="list-unstyled">
+                    <li id="rule1">✓ En az 8 karakter</li>
+                    <li id="rule2">✓ En az 1 büyük harf</li>
+                    <li id="rule3">✓ En az 1 küçük harf</li>
+                    <li id="rule4">✓ En az 1 sayı</li>
+                    <li id="rule5">✓ En az 1 özel karakter (. ! @@ # $ % vb.)</li>
+                </ul>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Şifre Tekrar:</label>
+                <input type="password" class="form-control" name="regPasswordConfirm" id="regPasswordConfirm" required>
+            </div>
+
+            <div class="captcha-box">
+                <label class="form-label">Güvenlik Sorusu:</label>
+                <p class="fs-5 fw-bold">
+                    <span id="regNum1">@ViewBag.RegCaptchaNum1</span> + 
+                    <span id="regNum2">@ViewBag.RegCaptchaNum2</span> = ?
+                </p>
+                <input type="number" class="form-control" name="regCaptchaAnswer" id="regCaptchaAnswer" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Kayıt Ol</button>
+            
+            <p class="text-center">
+                Zaten hesabınız var mı? <a href="@Url.Action("Login", "Account")" class="text-decoration-none">Giriş Yap</a>
+            </p>
+        </form>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="message error mt-3">@ViewBag.ErrorMessage</div>
+        }
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="message success mt-3">@ViewBag.SuccessMessage</div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('regPassword').addEventListener('input', function() {
+            var pwd = this.value;
+            var rules = [
+                pwd.length >= 8,
+                /[A-Z]/.test(pwd),
+                /[a-z]/.test(pwd),
+                /[0-9]/.test(pwd),
+                /[.!@@#$%^&*()_+\-=\[\]{}|;:,<>?]/.test(pwd)
+            ];
+            
+            for (var i = 0; i < rules.length; i++) {
+                var ruleElement = document.getElementById('rule' + (i + 1));
+                if (rules[i]) {
+                    ruleElement.className = 'valid';
+                } else {
+                    ruleElement.className = 'invalid';
+                }
+            }
+        });
+    </script>
+}
+

@@ -1,0 +1,64 @@
+@model BankManagementSystem.Models.Customer
+@{
+    ViewData["Title"] = "Para Yatır";
+}
+
+<h2 class="mb-4 fade-in"><i class="fas fa-arrow-down me-2"></i>Para Yatır</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="fas fa-arrow-down me-2"></i>Para Yatırma İşlemi</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <strong>Mevcut Bakiyeniz:</strong> <span class="fs-4 text-success">@Model.Balance.ToString("N2") ₺</span>
+                </div>
+
+                <form asp-action="Deposit" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Yatırılacak Tutar (₺):</label>
+                        <div class="input-group">
+                            <span class="input-group-text">₺</span>
+                            <input type="number" class="form-control" name="amount" step="0.01" min="0.01" required autofocus>
+                        </div>
+                        <small class="text-muted">Minimum yatırma tutarı: 0.01 ₺</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            <i class="fas fa-arrow-down me-2"></i>Para Yatır
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary w-100 mt-2"><i class="fas fa-times me-2"></i>İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Bilgi</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Hesap Numarası:</strong><br>@Model.AccountNumber</p>
+                <p><strong>Ad Soyad:</strong><br>@Model.Name</p>
+                <p><strong>Şube:</strong><br>@(Model.Branch?.Name ?? "N/A")</p>
+            </div>
+        </div>
+    </div>
+</div>
+
